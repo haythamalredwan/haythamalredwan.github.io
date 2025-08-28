@@ -1,18 +1,14 @@
-// Fixed Portfolio JavaScript - Compatible with existing HTML
+// Fixed Portfolio JavaScript - Compatible with existing HTML and Formspree
 
-// 1. Enhanced form validation and submission
-function submitForm(event) {
-  if (event) event.preventDefault();
-
+// 1. Enhanced form validation that works WITH Formspree
+function validateAndSubmitForm(event) {
   const name = document.getElementById("name");
   const email = document.getElementById("email");
   const message = document.getElementById("message");
-  const submitBtn = document.getElementById("form-btn");
 
   // Check if elements exist
-  if (!name || !email || !message || !submitBtn) {
-    alert("Form elements not found");
-    return;
+  if (!name || !email || !message) {
+    return true; // Let form submit normally if elements not found
   }
 
   // Reset previous error states
@@ -46,35 +42,20 @@ function submitForm(event) {
   }
 
   if (!isValid) {
+    event.preventDefault(); // Only prevent if validation fails
     alert(errorMessage);
     return false;
   }
 
-  // Show loading state
-  const originalText = submitBtn.textContent;
-  submitBtn.textContent = "Sending...";
-  submitBtn.disabled = true;
+  // If validation passes, show loading state and let form submit normally
+  const submitBtn = document.getElementById("form-btn");
+  if (submitBtn) {
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+  }
 
-  // Simulate form submission
-  setTimeout(() => {
-    alert("Thank you! Your message has been sent successfully!");
-
-    // Reset form
-    name.value = "";
-    email.value = "";
-    message.value = "";
-
-    // Reset button
-    submitBtn.textContent = originalText;
-    submitBtn.disabled = false;
-
-    // Reset border colors
-    name.style.borderColor = "#fb725c";
-    email.style.borderColor = "#fb725c";
-    message.style.borderColor = "#fb725c";
-  }, 1500);
-
-  return false;
+  // Let the form submit to Formspree
+  return true;
 }
 
 // 2. Counter animation for statistics - Improved and more reliable
@@ -510,16 +491,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Start typing effect after a short delay
   setTimeout(startTypingEffect, 1000);
 
-  // Update form submission to use the new function
+  // Add form validation that works WITH Formspree
   const form = document.querySelector(".contact-form");
   if (form) {
-    form.addEventListener("submit", submitForm);
-  }
-
-  // Also update onclick handler for the button
-  const submitButton = document.getElementById("form-btn");
-  if (submitButton) {
-    submitButton.onclick = submitForm;
+    form.addEventListener("submit", validateAndSubmitForm);
   }
 });
 
@@ -527,7 +502,7 @@ document.addEventListener("DOMContentLoaded", function () {
 console.log(`
 🚀 Welcome to Haytham's Portfolio!
 ✨ Enhanced with JavaScript features:
-   • Form validation & submission
+   • Form validation (works with Formspree)
    • Scroll animations
    • Counter animations
    • Mobile responsive menu
@@ -539,7 +514,7 @@ console.log(`
 
 // Export functions for potential external use
 window.portfolioJS = {
-  submitForm,
+  validateAndSubmitForm,
   animateCounters,
   startTypingEffect,
 };
