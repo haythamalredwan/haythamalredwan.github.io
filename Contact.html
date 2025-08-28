@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact</title>
+</head>
+<body>
+    <div class="contant">
+        <header>
+            <nav>
+                <h1><a href="./index.html">Haytham Alredwan</a></h1>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./Projects.html">Projects</a></li>
+                    <li><a class="active" href="./Contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="contact">
+            <div class="contact-title">
+                <div class="line-h mainBG-color"></div>
+                <h1>Contacts</h1>
+            </div>
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="full name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="example@gmail.com" required>
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" placeholder="type your message here..." required></textarea>
+                    <button class="main-btn mainBG-color btn" type="submit" onclick="submitForm()"
+                        id="form-btn">Send</button>
+                </form>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <h2>Haytham Alredwam</h2>
+        <p>Designed with love, all right reserved for Haytham Alredwan</p>
+        <div class="contact-link">
+            <a href="https://www.linkedin.com/in/haytham-alredwan-b6052323b/"> <img src="./src/icon/linkedin.png"
+                    alt="linkedIn"></a>
+            <a href="https://github.com/haythamalredwan/"> <img src="./src/icon/github-logo.png" alt="Gethub"></a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=haythamalredwan@gmail.com" target="_blank">
+                <img src="./src/icon/email.png" alt="email">
+            </a>
+        </div>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+</html>
